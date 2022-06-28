@@ -10,5 +10,5 @@ virtualenv:
 	. ./activate_python.sh; conda install ipython ipykernel numpy pandas scikit-learn matplotlib librosa optuna h5py pyyaml tensorboardx black flake8 -c conda-forge
 	. ./activate_python.sh; conda install pytorch torchaudio cudatoolkit=11.3 -c pytorch
 clean:
-	rm -fr venv minconda.sh activate_python.sh 
+	rm -fr venv miniconda.sh activate_python.sh pytorch-image-models
 	find -iname "*.pyc" -delete
