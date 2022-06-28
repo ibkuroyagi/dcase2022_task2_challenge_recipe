@@ -1,0 +1,80 @@
+# efficientnet-b0 BCE use_embed_norm affine
+# https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/efficientnet.py
+###########################################################
+#                NETWORK ARCHITECTURE SETTING             #
+###########################################################
+model_type: ASDModel
+model_params:
+  backbone: tf_efficientnet_b0_ns
+  neck: option-F
+  embedding_size: 128
+  gem_pooling: false
+  pretrained: true
+  use_pos: false
+  in_chans: 3
+  n_fft: 2048
+  hop_length: 256
+  n_mels: 224
+  power: 1.0
+  out_dim: 6
+  
+
+###########################################################
+#               ADVERSARIAL LOSS SETTING                  #
+###########################################################
+machine_loss_type: BCEWithLogitsLoss
+machine_loss_params:
+  reduction: mean
+
+section_loss_type: BCEWithLogitsLoss
+section_loss_params:
+  reduction: mean
+
+section_loss_lambda: 10.0
+
+# mixup related
+mixup_alpha: 0.2
+mixup_mode: null
+mixup_scheduler:
+  max_rate: 1.0
+  min_rate: 0.0
+  mode: cos
+
+###########################################################
+#                  DATA LOADER SETTING                    #
+###########################################################
+
+n_target: 1
+use_target: true
+
+accum_grads: 1
+batch_size: 128
+n_pos: 64 # Batch size.
+n_neg: 64
+pin_memory: true # Whether to pin memory in Pytorch DataLoader.
+num_workers: 2 # Number of workers in Pytorch DataLoader.
+allow_cache: true # Whether to allow cache in dataset. If true, it requires cpu memory.
+
+###########################################################
+#             OPTIMIZER & SCHEDULER SETTING               #
+###########################################################
+optimizer_type: AdamW
+optimizer_params:
+  lr: 1.0e-3
+  weight_decay: 0
+scheduler_type: OneCycleLR
+scheduler_params:
+  max_lr: 1.0e-3
+###########################################################
+#                    INTERVAL SETTING                     #
+###########################################################
+train_max_epochs: 300 # Number of training steps.
+save_interval_epochs: 50 # Interval steps to save checkpoint.
+log_interval_epochs: 5 # Interval steps to record the training log.
+###########################################################
+#                     OTHER SETTING                       #
+###########################################################
+sf: 16000 # Sampling rate.
+sec: 2.0
+n_split: 10
+seed: 2022

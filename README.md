@@ -16,8 +16,6 @@ $ cd dcase2022_task2/tools
 $ make
 ```
 
-Note that we specify cuda version used to compile pytorch wheel.  
-If you want to use different cuda version, please check `tools/Makefile` to change the pytorch wheel to be installed.
 
 ## Recipe
 - [dcase2022-task2](https://dcase.community/challenge2022/task-unsupervised-anomalous-sound-detection-for-machine-condition-monitoring): The main challenge of this task is to detect unknown anomalous sounds under the condition that only normal sound samples have been provided as training data.
@@ -26,16 +24,26 @@ To run the recipe, please follow the below instruction.
 
 ```bash
 # Let us move on the recipe directory
-$ cd egs/dcase2022-task2/baseline
+$ cd scripts
 
 # Run the recipe from scratch
-$ ./run.sh
+$ ./job.sh
 
 # You can change config via command line
-$ ./run.sh --conf <your_customized_yaml_config>
+$ ./job.sh --no <the_number_of_your_customized_yaml_config>
 
 # You can select the stage to start and stop
-$ ./run.sh --stage 2 --stop_stage 2
+$ ./job.sh --stage 1 --start_stage 3
+
+# After all machine types have completed Stage 5, starting Stage 2.
+# You can see the results at exp/all/**/score*.csv
+$ ./job.sh --stage 2
+
+# If you would like to ensemble several models, please following commands.
+$ . ./path.sh
+$ python ./local/get_domain_classifier_weight.py
+$ python ./local/domain_generalization_ave.py
+
 ```
 
 

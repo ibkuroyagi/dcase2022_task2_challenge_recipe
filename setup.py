@@ -9,7 +9,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 requirements = {
-    "install": ["timm"],
+    "install": [],
     "setup": [
         "numpy",
         "pytest-runner",

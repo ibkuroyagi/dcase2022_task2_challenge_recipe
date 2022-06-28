@@ -26,15 +26,11 @@ q/
 *.log
 *.ipynb
 # recipe related
-egs/*/*/data
-egs/*/*/.data
-egs/*/*/downloads
-egs/*/*/dump
-egs/*/*/dump_sp
-egs/*/*/.dump
-egs/*/*/exp*
-egs/*/*/*ipynb
-egs/*/*/*wav
+scripts/data
+scripts/downloads
+scripts/dump*
+scripts/exp*
+scripts/*ipynb
 # tools related
 tools/pytorch-image-models/
 tools/venv/
