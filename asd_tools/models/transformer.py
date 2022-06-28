@@ -86,13 +86,7 @@ class Transformer(nn.Module):
         self.section_head = nn.Linear(self.embedding_size, out_dim, bias=False)
 
     def forward(self, x):
-        """Calculate forward propagation.
-        Args:
-            x (Tensor): Input tensor (batch_size, wave_length).
-        Returns:
-            Tensor: Reconstructed inputs (batch_size, sequence_length, n_mels).
-            Tensor: Latent variables (batch_size, sequence_length, num_latent_units) if return_latent = True.
-        """
+        """Calculate forward propagation."""
         x = self.spectrogram_extractor(x).transpose(2, 1)
         if self.add_header:
             x = torch.cat([x.mean(1)[:, None, :], x], dim=1)

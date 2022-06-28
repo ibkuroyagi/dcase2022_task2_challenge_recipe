@@ -106,7 +106,8 @@ class OutlierBalancedBatchSampler(BatchSampler):
 
         Args:
             dataset (dataset): dataset for ASD
-            batch_size (int, optional): batch size. Defaults to 64.
+            n_pos (int, optional): The number of positive sample in the mini-batch. Defaults to 64.
+            n_neg (int, optional): The number of negative sample in the mini-batch. Defaults to 64.
             shuffle (bool, optional): shuffle. Defaults to False.
             drop_last (bool, optional): drop last. Defaults to False.
             n_target (int, optional): The number of target sample. Defaults to 1.

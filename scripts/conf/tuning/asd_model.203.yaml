@@ -1,5 +1,3 @@
-# efficientnet-b0 BCE use_embed_norm affine, 200 -> target=1
-# https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/efficientnet.py
 ###########################################################
 #                NETWORK ARCHITECTURE SETTING             #
 ###########################################################
