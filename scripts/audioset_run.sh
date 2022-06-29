@@ -10,23 +10,25 @@ stop_stage=1 # stage to stop
 verbose=1    # verbosity level (lower is less info)
 n_gpus=1     # number of gpus in training
 n_jobs=256
-conf=conf/tuning/asd_model.000.yaml
+conf=conf/tuning/asd_model.audioset_v000.yaml
 resume=""
 pos_machine=fan
 # directory path setting
 dumpdir=dump/use_audioset # directory to dump features
 expdir=exp
 # training related setting
-tag=000                # tag for directory to save model
-time_stretch_rates=1.0 #"1.0 1.1 0.9"
-checkpoints=""
-use_10sec=false
-feature=_embed # "": using all features in training an anomalous detector., _embed: using only embedding features in training an anomalous detector. _prediction: using only predictions in training an anomalous detector.
-epochs="50 100 150 200 250"
+tag=audioset_v000 # tag for directory to save model
+target_mod=3
 valid_ratio=0.1
 audioset_dir=/path/to/AudioSet/audios
-audioset_pow=0
-target_mod=3
+audioset_pow=21
+# inference related setting
+epochs="50 100 150 200 250 300"
+checkpoints=""
+use_10sec=false
+feature=_embed # "": using all features in training an anomalous detector.
+# _embed: using only embedding features in training an anomalous detector.
+# _prediction: using only predictions in training an anomalous detector.
 inlier_scp=""
 use_target_in_embed=true
 
@@ -112,10 +114,6 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
 fi
 
 end_str+="_${valid_ratio}"
-
-if [ "${time_stretch_rates}" != "1.0" ]; then
-    end_str+="_sp"
-fi
 
 if [ "${stage}" -le 2 ] && [ "${stop_stage}" -ge 2 ]; then
     log "Stage 2: Write scp."

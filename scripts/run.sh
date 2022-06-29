@@ -17,14 +17,15 @@ pos_machine=fan
 dumpdir=dump/base # directory to dump features
 expdir=exp
 # training related setting
-tag=000 # tag for directory to save model
-time_stretch_rates=1.0
+tag=000         # tag for directory to save model
 valid_ratio=0.1 # Ratio of validation data
+# inference related setting
+epochs="50 100 150 200 250 300"
 checkpoints=""
 use_10sec=false
-feature="" # "": all, _embed: only embed, _prediction: only prediction
-epochs="50 100 150 200 250"
-# inference related setting
+feature="" # "": using all features in training an anomalous detector.
+# _embed: using only embedding features in training an anomalous detector.
+# _prediction: using only predictions in training an anomalous detector.
 inlier_scp=""
 use_norm=""
 use_target_in_embed=true

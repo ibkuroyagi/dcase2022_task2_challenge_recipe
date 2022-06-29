@@ -19,12 +19,15 @@ expdir=exp
 time_stretch_rates=1.0 #"1.0" or "1.0 1.1 0.9"
 tag=domain_classifier  # tag for directory to save model
 resume=""
+valid_ratio=0.1
+# inference related setting
+epochs="50 100 150 200 250 300"
 checkpoints=""
 use_10sec=false
-feature=_embed # "": all features, _embed: only embedding feature, _prediction: only predictions
+feature=_embed # "": using all features in training an anomalous detector.
+# _embed: using only embedding features in training an anomalous detector.
+# _prediction: using only predictions in training an anomalous detector.
 use_target_in_embed=false
-epochs="50 100 150 200 250 300"
-valid_ratio=0.1
 
 # shellcheck disable=SC1091
 . utils/parse_options.sh || exit 1
