@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Copyright 2021 Ibuki Kuroyanai
+# Copyright 2022 Ibuki Kuroyanai
 
 """Normalize wave data from download dir."""
 
@@ -10,7 +10,6 @@ import logging
 import os
 import json
 
-import h5py
 import librosa
 import numpy as np
 

@@ -16,12 +16,13 @@ audioset_dir=$1
 dump_audioset_dir=$2
 [ ! -e "${dump_audioset_dir}/unbalanced_train_segments/log" ] && mkdir -p "${dump_audioset_dir}/unbalanced_train_segments/log"
 [ ! -e "${dump_audioset_dir}/balanced_train_segments/log" ] && mkdir -p "${dump_audioset_dir}/balanced_train_segments/log"
-echo -n >${dump_audioset_dir}/balanced_train_segments/wav.scp
+echo -n >"${dump_audioset_dir}/balanced_train_segments/wav.scp"
+# shellcheck disable=SC2086
 ls ${audioset_dir}/balanced_train_segments/*.wav >>${dump_audioset_dir}/balanced_train_segments/wav.scp
 log "Created ${dump_audioset_dir}/balanced_train_segments/wav.scp"
-
-echo -n >${dump_audioset_dir}/unbalanced_train_segments/wav.scp
+echo -n >"${dump_audioset_dir}/unbalanced_train_segments/wav.scp"
 for i in {00..40}; do
+    # shellcheck disable=SC2086,SC2231
     for pathfile in ${audioset_dir}/unbalanced_train_segments/unbalanced_train_segments_part${i}/*.wav; do
         echo $pathfile >>${dump_audioset_dir}/unbalanced_train_segments/wav.scp
     done

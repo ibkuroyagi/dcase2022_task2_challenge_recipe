@@ -1,11 +1,13 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
 . ./cmd.sh || exit 1
 . ./path.sh || exit 1
 
 no=000
 epochs="50 100 150 200 250 300"
 feature=""
+# shellcheck disable=SC1091
 . utils/parse_options.sh || exit 1
 set -euo pipefail
 

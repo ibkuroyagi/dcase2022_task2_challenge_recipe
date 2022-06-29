@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 # Copyright 2022 Kuroyanagi Ibuki
-#  MIT License (https://opensource.org/licenses/MIT)
 
 """Utility functions."""
 

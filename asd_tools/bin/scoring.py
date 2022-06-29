@@ -3,7 +3,7 @@
 
 # Copyright 2022 Ibuki Kuroyanagi
 
-"""Scoreing."""
+"""Scoring."""
 
 import argparse
 import logging

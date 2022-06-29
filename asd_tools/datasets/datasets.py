@@ -198,7 +198,7 @@ class OutlierWaveASDDataset(Dataset):
         # for cache
         self.allow_cache = allow_cache
         if allow_cache:
-            # NOTE(ibuki): Manager is need to share memory in dataloader with num_workers > 0
+            # Manager is need to share memory in dataloader with num_workers > 0
             self.manager = Manager()
             self.caches = self.manager.list()
             self.caches += [() for _ in range(self.caches_size)]
