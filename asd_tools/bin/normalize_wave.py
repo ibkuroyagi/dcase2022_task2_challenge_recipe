@@ -78,10 +78,12 @@ def main():
     sec = 2.0
     os.makedirs(args.dumpdir, exist_ok=True)
     # get dataset
-    if not os.path.isfile(args.statistic_path):
+    if (len(args.statistic_path) == 0) and args.no_normalize:
+        logging.info("Do not use statistics for normalizing.")
+    elif not os.path.isfile(args.statistic_path):
         wave_fname_list = os.listdir(args.download_dir)
         # wave_fname_list = [fname for fname in wave_fname_list if "target" not in fname]
-        tmp = np.zeros((len(wave_fname_list), 160000))
+        tmp = np.zeros((len(wave_fname_list), 16000 * 10))
         for i, fname in enumerate(tqdm(wave_fname_list)):
             logging.info(f"fname:{fname}")
             tmp[i], _ = librosa.load(os.path.join(args.download_dir, fname), sr=sr)

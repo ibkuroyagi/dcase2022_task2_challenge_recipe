@@ -93,6 +93,7 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
     done
     # shellcheck disable=SC2086
     utils/split_scp.pl "${dumpdir}/audioset/unbalanced_train_segments/wav.scp" ${split_scps}
+    log "Creat dump file start. ${dumpdir}/audioset/unbalanced_train_segments/log/preprocess.*.log"
     pids=()
     (
         # shellcheck disable=SC2086,SC2154
@@ -100,7 +101,6 @@ if [ "${stage}" -le 1 ] && [ "${stop_stage}" -ge 1 ]; then
             python -m asd_tools.bin.normalize_wave \
             --download_dir "${dumpdir}/audioset/unbalanced_train_segments/log/wav.JOB.scp" \
             --dumpdir "${dumpdir}/audioset/unbalanced_train_segments/part.JOB" \
-            --statistic_path "${statistic_path}" \
             --verbose "${verbose}" \
             --no_normalize
     ) &
