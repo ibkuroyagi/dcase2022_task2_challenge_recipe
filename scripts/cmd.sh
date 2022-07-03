@@ -26,9 +26,8 @@
 #   "Parallelization in Kaldi": http://kaldi-asr.org/doc/queue.html
 # =========================================================~
 
-
 # Select the backend used by run.sh from "local", "stdout", "sge", "slurm", or "ssh"
-cmd_backend='slurm'
+cmd_backend='local'
 
 # Local machine, without any Job scheduling system
 if [ "${cmd_backend}" = local ]; then
