@@ -10,9 +10,6 @@ Details of the method are written in [our Technical Report](https://dcase.commun
 
 
 ## Setup
-Note that your cuda version must be exactly matched with the version used for the pytorch binary to install apex.  
-To install pytorch compiled with different cuda version, see `tools/Makefile`.  
-
 ```bash
 $ git clone https://github.com/ibkuroyagi/dcase2022_task2.git
 $ cd dcase2022_task2/tools
@@ -50,6 +47,7 @@ $ python ./local/domain_generalization_ave.py
 ```
 
 ## Citation
+If you think this work is useful to you, please cite:
 ```
 @techreport{KuroyanagiNU-HDL2022,
     Author = "Kuroyanagi, Ibuki and Hayashi, Tomoki and Takeda, Kazuya and Toda, Tomoki",
