@@ -1,5 +1,6 @@
 # Anomalous Sound Detection with Pytorch
-
+This repository is a recipe for running the second-place method in Task 2 of the DCASE 2022 competition for the performance of anomalous sound detection systems.
+The method consists of two stages: a feature extractor that utilizes pseudo-anomalous data and an anomalous detector.
 ## Requirements
 - Python 3.9+
 - Cuda 11.3
@@ -44,6 +45,17 @@ $ . ./path.sh
 $ python ./local/get_domain_classifier_weight.py
 $ python ./local/domain_generalization_ave.py
 
+```
+
+## Citation
+```
+@techreport{KuroyanagiNU-HDL2022,
+    Author = "Kuroyanagi, Ibuki and Hayashi, Tomoki and Takeda, Kazuya and Toda, Tomoki",
+    title = "Two-stage anomalous sound detection systems using domain generalization and specialization techniques",
+    institution = "DCASE2022 Challenge",
+    year = "2022",
+    month = "July",
+}
 ```
 
 
