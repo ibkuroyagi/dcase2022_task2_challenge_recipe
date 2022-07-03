@@ -11,8 +11,8 @@ Details of the method are written in [our Technical Report](https://dcase.commun
 
 ## Setup
 ```bash
-$ git clone https://github.com/ibkuroyagi/dcase2022_task2.git
-$ cd dcase2022_task2/tools
+$ git clone https://github.com/ibkuroyagi/dcase2022_task2_challenge_recipe.git
+$ cd dcase2022_task2_challenge_recipe/tools
 $ make
 ```
 
