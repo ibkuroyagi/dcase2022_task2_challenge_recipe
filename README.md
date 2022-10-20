@@ -49,12 +49,19 @@ $ python ./local/domain_generalization_ave.py
 ## Citation
 If you think this work is useful to you, please cite:
 ```
-@techreport{KuroyanagiNU-HDL2022,
+@inproceedings{kuroyanagi2022eusipco,
+    title={{Improvement of Serial Approach to Anomalous Sound Detection by Incorporating Two Binary Cross-Entropies for Outlier Exposur}}, 
+    author={Ibuki Kuroyanagi and Tomoki Hayashi and Kazuya Takeda and Tomoki Toda},
+    booktitle={2022 30th European Signal Processing Conference (EUSIPCO)},
+    pages={294--298},
+    year={2022},
+    organization={IEEE}
+}
+@techreport{Kuroyanagi2022dcase,
     Author = "Kuroyanagi, Ibuki and Hayashi, Tomoki and Takeda, Kazuya and Toda, Tomoki",
     title = "Two-stage anomalous sound detection systems using domain generalization and specialization techniques",
     institution = "DCASE2022 Challenge",
     year = "2022",
-    month = "July",
 }
 ```
 
