@@ -300,7 +300,6 @@ class DomainClassifierTrainer(object):
                     so_section,
                     mix_section=self.config["section_loss_type"] == "BCEWithLogitsLoss",
                     alpha=self.config["source_mixup_alpha"],
-                    mode=self.config["mixup_mode"],
                 )
         # target domain mixup
         (

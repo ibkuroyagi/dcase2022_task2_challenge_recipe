@@ -159,7 +159,6 @@ class MetricOECTrainer(object):
                     section,
                     mix_section=self.config["section_loss_type"] == "BCEWithLogitsLoss",
                     alpha=self.config["mixup_alpha"],
-                    mode=self.config["mixup_mode"],
                 )
         y_ = self.model(wave)
         machine_loss = (

@@ -1,4 +1,3 @@
-import logging
 import math
 import torch
 import numpy as np
@@ -10,7 +9,6 @@ def mixup_for_asd(
     section: torch.tensor,
     mix_section=False,
     alpha=0.2,
-    mode=None,
 ):
     """MixUp for ASD."""
     with torch.no_grad():
@@ -24,11 +22,8 @@ def mixup_for_asd(
             mixed_X = lam[:, None] * X + (1 - lam[:, None]) * X[perm]
         elif x_size == 2:
             mixed_X = lam * X + (1 - lam) * X[perm]
-        logging.debug(
-            f"lam:{lam.shape}, prem:{perm.shape}, Y:{Y.shape}, Y[perm]:{Y[perm].shape}, "
-            f"lam*Y:{(lam*Y).shape}, (1 - lam) * Y[perm]:{((1 - lam) * Y[perm]).shape}"
-        )
         mixed_Y = lam * Y + (1 - lam) * Y[perm]
+        section[0 == Y.squeeze(1)] = 0
         mixed_section = (
             lam * section + (1 - lam) * section[perm] if mix_section else section
         )
@@ -37,37 +32,6 @@ def mixup_for_asd(
         if mix_section
         else ((0 < mixed_Y) & (mixed_Y < 1)).squeeze(1)
     )
-    if mode == "hard":
-        mixed_Y = (mixed_Y > 0.0).float()
-        mixed_section = (mixed_section > 0.0).float()
-    elif mode == "soft":
-        mixed_Y = (~(mixed_Y < 1.0)).float()
-        mixed_section = (~(mixed_section < 1.0)).float()
-    return mixed_X, mixed_Y, mixed_section, section_idx
-
-
-def mixup_for_outlier(
-    X: torch.tensor,
-    Y: torch.tensor,
-    section: torch.tensor,
-    alpha=0.2,
-    mode="vanilla",
-):
-    """MixUp for ASD."""
-    batch_size = X.size(0)
-    lam = torch.tensor(
-        np.random.beta(alpha, alpha, batch_size), dtype=torch.float32
-    ).to(X.device)[:, None]
-    perm = torch.randperm(batch_size).to(X.device)
-    mixed_X = lam * X + (1 - lam) * X[perm]
-    logging.debug(
-        f"lam:{lam.shape}, prem:{perm.shape}, Y:{Y.shape}, Y[perm]:{Y[perm].shape}, "
-        f"lam*Y:{(lam*Y).shape}, (1 - lam) * Y[perm]:{((1 - lam) * Y[perm]).shape}"
-    )
-    mixed_Y = lam * Y + (1 - lam) * Y[perm]
-    mixed_section = lam * section + (1 - lam) * section[perm]
-    section_idx = (0 < mixed_Y).squeeze(1)
-
     return mixed_X, mixed_Y, mixed_section, section_idx
 
 
