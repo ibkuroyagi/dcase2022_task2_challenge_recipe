@@ -278,8 +278,7 @@ class DomainClassifierTrainer(object):
         section_idx = machine.bool()
         machine = machine.unsqueeze(1)
         section = batch["section"].to(self.device)
-        if self.config["section_loss_type"] == "BCEWithLogitsLoss":
-            section = torch.nn.functional.one_hot(section, num_classes=6).float()
+        section = torch.nn.functional.one_hot(section, num_classes=6).float()
         wave = batch["wave"].to(self.device)
         # split source and target domain
         batch_size = len(wave) // 3
@@ -395,8 +394,7 @@ class DomainClassifierTrainer(object):
             self.epoch_valid_y_ta_machine = np.concatenate(
                 [self.epoch_valid_y_ta_machine, ta_machine.cpu().numpy()]
             )
-            if self.config["section_loss_type"] == "BCEWithLogitsLoss":
-                ta_section = torch.argmax(ta_section, dim=1)
+            ta_section = torch.argmax(ta_section, dim=1)
             self.epoch_valid_y_ta_section = np.concatenate(
                 [
                     self.epoch_valid_y_ta_section,

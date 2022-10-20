@@ -140,8 +140,7 @@ class MetricOECTrainer(object):
         section_idx = machine.bool()
         machine = machine.unsqueeze(1)
         section = batch["section"].to(self.device)
-        if self.config["section_loss_type"] == "BCEWithLogitsLoss":
-            section = torch.nn.functional.one_hot(section, num_classes=6).float()
+        section = torch.nn.functional.one_hot(section, num_classes=6).float()
         wave = batch["wave"].to(self.device)
         if self.config.get("PitchShift") is not None:
             if np.random.rand() < self.config.get("apply_rate", 1.0):
@@ -178,8 +177,6 @@ class MetricOECTrainer(object):
             self.config.get("machine_loss_lambda", 1) * machine_loss
             + self.config["section_loss_lambda"] * section_loss
         )
-
-        logging.debug(f"backward:{loss.item():.4f}")
         loss.backward()
 
         self.forward_count += 1
@@ -232,8 +229,7 @@ class MetricOECTrainer(object):
         machine = batch["machine"].to(self.device)
         section_idx = batch["machine"].bool()
         section = batch["section"].to(self.device)[section_idx]
-        if self.config["section_loss_type"] == "BCEWithLogitsLoss":
-            section = torch.nn.functional.one_hot(section, num_classes=6).float()
+        section = torch.nn.functional.one_hot(section, num_classes=6).float()
         with torch.no_grad():
             y_ = self.model(batch["wave"].to(self.device))
             machine_loss = (
