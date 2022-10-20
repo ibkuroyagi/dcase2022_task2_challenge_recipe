@@ -17,7 +17,6 @@ model_params:
   sample_rate: 16000
   n_fft: 2048
   hop_length: 512
-  
   add_header: true
 ###########################################################
 #               ADVERSARIAL LOSS SETTING                  #
@@ -36,7 +35,6 @@ section_loss_lambda: 10.0
 
 # mixup related
 mixup_alpha: 0.2
-mixup_mode: null
 mixup_scheduler:
   max_rate: 1.0
   min_rate: 0.0

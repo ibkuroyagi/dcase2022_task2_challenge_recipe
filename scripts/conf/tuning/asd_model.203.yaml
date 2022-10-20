@@ -34,7 +34,7 @@ section_loss_lambda: 10.0
 
 # mixup related
 mixup_alpha: 0.2
-mixup_mode: null
+
 mixup_scheduler:
   max_rate: 1.0
   min_rate: 0.0
