@@ -1,8 +1,9 @@
 # Anomalous Sound Detection with Pytorch
 This repository is a recipe for running the second-place method in Task 2 of the DCASE 2022 competition for the performance of anomalous sound detection systems.  
 The method consists of two stages: a feature extractor that utilizes pseudo-anomalous data and an anomalous detector.  
-Details of the method are written in [our Technical Report](https://dcase.community/documents/challenge2022/technical_reports/DCASE2022_Kuroyanagi_11_t2.pdf).
-
+Details of the method are written in [our Technical Report](https://dcase.community/documents/challenge2022/technical_reports/DCASE2022_Kuroyanagi_11_t2.pdf).  
+We presented [our original proposed method](https://eurasip.org/Proceedings/Eusipco/Eusipco2022/pdfs/0000294.pdf
+) at EUSIPCO 2022.
 ## Requirements
 - Python 3.9+
 - Cuda 11.3
@@ -40,6 +41,7 @@ $ ./job.sh --stage 1 --start_stage 3
 $ ./job.sh --stage 2
 
 # If you would like to ensemble several models, please following commands.
+$ ./domain_classifier_job.sh
 $ . ./path.sh
 $ python ./local/get_domain_classifier_weight.py
 $ python ./local/domain_generalization_ave.py
