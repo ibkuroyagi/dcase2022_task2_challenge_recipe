@@ -52,7 +52,7 @@ $ python ./local/domain_generalization_ave.py
 If you think this work is useful to you, please cite:
 ```
 @inproceedings{kuroyanagi2022eusipco,
-    title={{Improvement of Serial Approach to Anomalous Sound Detection by Incorporating Two Binary Cross-Entropies for Outlier Exposur}}, 
+    title={{Improvement of Serial Approach to Anomalous Sound Detection by Incorporating Two Binary Cross-Entropies for Outlier Exposure}}, 
     author={Ibuki Kuroyanagi and Tomoki Hayashi and Kazuya Takeda and Tomoki Toda},
     booktitle={2022 30th European Signal Processing Conference (EUSIPCO)},
     pages={294--298},
