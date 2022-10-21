@@ -146,7 +146,7 @@ def main():
                 ]
         else:
             for section_id in range(n_section):
-                for used_set in ["all", "so"]:  # ["all", "so", "ta"
+                for used_set in ["all", "so"]:  # ["all", "so", "ta"]
                     if used_set == "all":
                         input_valid = valid_df[(valid_df["section"] == section_id)][
                             feature_cols
@@ -184,12 +184,12 @@ def main():
                         eval_df.loc[
                             eval_df["section"] == section_id, f"GMM_{hp}_{used_set}"
                         ] = zscore(gmm_score)
-                        ocsvm = OneClassSVM(nu=1 / (2 * hp), kernel="rbf")
-                        ocsvm.fit(input_valid)
-                        ocsvm_score = ocsvm.score_samples(input_eval)
-                        eval_df.loc[
-                            eval_df["section"] == section_id, f"OCSVM_{hp}_{used_set}"
-                        ] = zscore(ocsvm_score)
+                        # ocsvm = OneClassSVM(nu=1 / (2 * hp), kernel="rbf")
+                        # ocsvm.fit(input_valid)
+                        # ocsvm_score = ocsvm.score_samples(input_eval)
+                        # eval_df.loc[
+                        #     eval_df["section"] == section_id, f"OCSVM_{hp}_{used_set}"
+                        # ] = zscore(ocsvm_score)
                         knn = NearestNeighbors(n_neighbors=hp, metric="euclidean")
                         knn.fit(input_valid)
                         knn_score = knn.kneighbors(input_eval)[0].mean(1)
@@ -201,7 +201,7 @@ def main():
                                 f"LOF_{hp}_{used_set}",
                                 f"GMM_{hp}_{used_set}",
                                 f"KNN_{hp}_{used_set}",
-                                f"OCSCM_{hp}_{used_set}",
+                                # f"OCSCM_{hp}_{used_set}",
                             ]
             post_cols.sort()
         columns = ["path", "section", "is_normal"] + post_cols
