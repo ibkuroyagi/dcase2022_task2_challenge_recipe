@@ -38,7 +38,7 @@ machines = ["bearing", "fan", "gearbox", "valve", "slider", "ToyCar", "ToyTrain"
 hauc_list = []
 std_list = []
 row_list = []
-n_mix = 20
+n_mix = 3
 for machine in machines:
     path_list = list(top_df["path"])
     pp_list = list(top_df["post_process"])
