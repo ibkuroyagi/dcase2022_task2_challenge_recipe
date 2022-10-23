@@ -1,7 +1,6 @@
 import random
 import numpy as np
 from torch.utils.data.sampler import BatchSampler
-import logging
 
 
 class OECBalancedBatchSampler(BatchSampler):
@@ -70,9 +69,6 @@ class OECBalancedBatchSampler(BatchSampler):
                 random.shuffle(indices)
             yield indices
             self.count += self.n_samples - self.n_target
-            # logging.info(
-            #     f'count:{self.count}, self.used_idx_cnt["pos_source"]:{self.used_idx_cnt["pos_source"]}'
-            # )
         if not self.drop_last:
             indices = []
             indices.extend(self.pos_source_idx[self.used_idx_cnt["pos_source"] :])

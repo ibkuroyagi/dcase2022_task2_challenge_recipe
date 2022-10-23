@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 import torchaudio.transforms as T
 from asd_tools.models.modules import GeM
-import logging
 
 
 class Backbone(nn.Module):
@@ -111,15 +110,12 @@ class ASDModel(nn.Module):
 
     def forward(self, input, specaug=False):
         x = self.melspectrogram(input)
-        # logging.info(f"melspec:{x.shape}")
         if specaug:
             if self.timemask is not None:
                 x = self.timemask(x)
             if self.freqmask is not None:
                 x = self.freqmask(x)
-            # logging.info(f"specaug:{x.shape}")
         x = x.unsqueeze(1)
-        # logging.info(f"unsqueeze:{x.shape}")
         if self.use_pos:
             pos = torch.linspace(0.0, 1.0, x.size(2)).to(x.device)
             pos = pos.half()
@@ -133,7 +129,6 @@ class ASDModel(nn.Module):
                 x = torch.cat([x, pos], 1)
         else:
             x = x.expand(-1, 3, -1, -1)
-        # logging.info(f"before x:{x.shape}")
         x = self.backbone(x)
         x = self.global_pool(x)[:, :, 0, 0]
         embedding = self.neck(x)

@@ -217,7 +217,6 @@ class OutlierWaveASDDataset(Dataset):
                 section: (int) Number of machine id.
         """
         if self.allow_cache and (self.caches_size > idx):
-            # logging.info(f"self.caches[{idx}]:{self.caches[idx]}")
             if len(self.caches[idx]) != 0:
                 if self.transform is None:
                     return self.caches[idx]
